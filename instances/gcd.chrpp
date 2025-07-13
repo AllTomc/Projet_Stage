@@ -1,0 +1,112 @@
+/*
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the Apache License, Version 2.0.
+ *
+ *  Copyright:
+ *     2016, Vincent Barichard <Vincent.Barichard@univ-angers.fr>
+ *
+ *     Licensed under the Apache License, Version 2.0 (the "License");
+ *     you may not use this file except in compliance with the License.
+ *     You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *     Unless required by applicable law or agreed to in writing, software
+ *     distributed under the License is distributed on an "AS IS" BASIS,
+ *     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *     See the License for the specific language governing permissions and
+ *     limitations under the License.
+ *
+ */
+
+#include <iostream>
+#include <chrpp.hh>
+
+#include <options.hpp>
+
+/**
+ * @brief Greatest Common Divisor (Naive approach)
+ *
+ * The Greatest Common Divisor (GCD) of two integers is the largest
+ * positive integer that divides the two numbers without a remainder.
+ * For example, the GCD of 12 and 18 is 6.
+ * \ingroup Examples
+
+	<CHR name="GCD">
+		<chr_constraint> gcd(+unsigned long int), res(?unsigned long int)
+		gcd1 @ gcd(0ul) <=> success();;
+		gcd2 @ gcd(N) \ gcd(M) <=> N <= M | gcd(M-N);;
+		res  @ gcd(N) \ res(M) <=> M %= N;;
+	</CHR>
+ */
+
+
+/**
+ * @brief Greatest Common Divisor with modulo operator
+ *
+ * The Greatest Common Divisor (GCD) of two integers is the largest
+ * positive integer that divides the two numbers without a remainder.
+ * For example, the GCD of 12 and 18 is 6.
+ * \ingroup Examples
+
+	<CHR name="GCD_MOD">
+	    <chr_constraint> gcd(+unsigned long int), res(?unsigned long int)
+	    gcd1 @ gcd(0ul) <=> success();;
+		gcd2 @ gcd(N) \ gcd(M) <=> N <= M | gcd(M % N);;
+		res  @ gcd(N) \ res(M) <=> M %= N;;
+	</CHR>
+ */
+
+template < typename T >
+void print(T& pb)
+{
+	auto it = pb.chr_store_begin();
+	while (!it.at_end())
+	{
+		std::cout << it.to_string() << std::endl;
+		++it;
+	}
+}
+
+int main(int argc, const char *argv[])
+{
+	TRACE( chr::Log::register_flags(chr::Log::ALL); )
+	Options options = parse_options(argc, argv, {
+			{ "mod", "m", false, "Use modulo"},
+			{ "", "", true, "First integer"},
+			{ "", "", true, "Second integer"}
+	});
+
+	Options_values values;
+	if (has_option("", options, values))
+	{
+        chr::Logical_var< unsigned long int > Res;
+		if (has_option("mod", options))
+		{
+			auto space = GCD_MOD::create();
+			CHR_RUN(
+				space->gcd(values[0].ul());
+				space->gcd(values[1].ul());
+				space->res(Res);
+			)
+			print(*space);
+			chr::Statistics::print(std::cout);
+		}
+		else
+		{
+			auto space = GCD::create();
+			CHR_RUN(
+				space->gcd(values[0].ul());
+				space->gcd(values[1].ul());
+				space->res(Res);
+			)
+			print(*space);
+			chr::Statistics::print(std::cout);
+		}
+		std::cout << "gcd(" << values[0].ul() << "," << values[1].ul() << ") = " << Res << std::endl;
+	} else {
+		std::cout << "Missing parameter" << std::endl << std::endl;
+		std::cout << options.m_help_message;
+	}
+	return 0;
+}

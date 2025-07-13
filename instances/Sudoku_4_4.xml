@@ -1,0 +1,50 @@
+<instance format="XCSP3" type="CSP">
+  <variables>
+    <array id="x" size="[4][4]"> 1..4 </array>
+  </variables>
+
+  <constraints>
+    <!-- AllDifferent sur les lignes -->
+    <group class="rows">
+      <allDifferent> %... </allDifferent>
+      <args> x[0][] </args>
+      <args> x[1][] </args>
+      <args> x[2][] </args>
+      <args> x[3][] </args>
+    </group>
+
+    <!-- AllDifferent sur les colonnes -->
+    <group class="columns">
+      <allDifferent> %... </allDifferent>
+      <args> x[][0] </args>
+      <args> x[][1] </args>
+      <args> x[][2] </args>
+      <args> x[][3] </args>
+    </group>
+
+    <!-- AllDifferent sur les blocs 2x2 -->
+    <group class="blocks">
+      <allDifferent> %... </allDifferent>
+      <args> x[0..1][0..1] </args> 
+      <args> x[0..1][2..3] </args> 
+      <args> x[2..3][0..1] </args>
+      <args> x[2..3][2..3] </args> 
+    </group>
+
+    <!-- Instanciation : 2 valeurs par bloc -->
+    <instantiation class="clues">
+      <list> 
+        x[0][0] x[1][1]   
+        x[0][2] x[1][3]   
+        x[2][0] x[3][1]   
+        x[2][2] x[3][3]   
+      </list>
+      <values> 
+        1 2               
+        3 4               
+        4 1               
+        2 3               
+      </values>
+    </instantiation>
+  </constraints>
+</instance>

@@ -1,0 +1,50 @@
+<instance format="XCSP3" type="CSP">
+  <variables>
+    <var id="yellow"> 1..5 </var>
+    <var id="green"> 1..5 </var>
+    <var id="red"> 1..5 </var>
+    <var id="white"> 1..5 </var>
+    <var id="blue"> 1..5 </var>
+    <var id="italy"> 1..5 </var>
+    <var id="spain"> 1..5 </var>
+    <var id="japan"> 1..5 </var>
+    <var id="england"> 1..5 </var>
+    <var id="norway"> 1..5 </var>
+    <var id="painter"> 1..5 </var>
+    <var id="sculptor"> 1..5 </var>
+    <var id="diplomat"> 1..5 </var>
+    <var id="pianist"> 1..5 </var>
+    <var id="doctor"> 1..5 </var>
+    <var id="cat"> 1..5 </var>
+    <var id="zebra"> 1..5 </var>
+    <var id="bear"> 1..5 </var>
+    <var id="snails"> 1..5 </var>
+    <var id="horse"> 1..5 </var>
+    <var id="milk"> 1..5 </var>
+    <var id="water"> 1..5 </var>
+    <var id="tea"> 1..5 </var>
+    <var id="coffee"> 1..5 </var>
+    <var id="juice"> 1..5 </var>
+  </variables>
+  <constraints>
+    <allDifferent> yellow green red white blue </allDifferent>
+    <allDifferent> italy spain japan england norway </allDifferent>
+    <allDifferent> painter sculptor diplomat pianist doctor </allDifferent>
+    <allDifferent> cat zebra bear snails horse </allDifferent>
+    <allDifferent> milk water tea coffee juice </allDifferent>
+    <intension> eq(painter,horse) </intension>
+    <intension> eq(diplomat,coffee) </intension>
+    <intension> eq(white,milk) </intension>
+    <intension> eq(spain,painter) </intension>
+    <intension> eq(england,red) </intension>
+    <intension> eq(snails,sculptor) </intension>
+    <intension> eq(add(green,1),red) </intension>
+    <intension> eq(add(blue,1),norway) </intension>
+    <intension> eq(doctor,milk) </intension>
+    <intension> eq(japan,diplomat) </intension>
+    <intension> eq(norway,zebra) </intension>
+    <intension> eq(dist(green,white),1) </intension>
+    <intension> in(horse,set(sub(diplomat,1),add(diplomat,1))) </intension>
+    <intension> in(italy,set(red,white,green)) </intension>
+  </constraints>
+</instance>

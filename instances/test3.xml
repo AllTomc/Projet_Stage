@@ -1,0 +1,11 @@
+<instance format="XCSP3" type="CSP">
+    <variables>
+        <var id="x">1..5</var>
+        <var id="y">1..5</var>
+        <var id="res">-4..4</var>
+    </variables>
+    <constraints>
+        <intension>eq(res,sub(x, y))</intension>
+        <intension>or(gt(x, y),eq(res, 0))</intension>
+    </constraints>
+</instance>

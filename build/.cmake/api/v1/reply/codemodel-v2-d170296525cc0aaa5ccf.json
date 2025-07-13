@@ -1,0 +1,120 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "ext/XCSP3-CPP-Parser",
+					"jsonFile" : "directory-ext.XCSP3-CPP-Parser-Debug-20baed5d9223d93797f1.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "ext/XCSP3-CPP-Parser",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "XCSP3toCPP",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "xcsp3parser",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "converter::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-converter-Debug-cc40a4dd41d767df8421.json",
+					"name" : "converter",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "samplesXcsp3::@c07341c7bc3703fb2207",
+					"jsonFile" : "target-samplesXcsp3-Debug-57b2e27130d6ce890420.json",
+					"name" : "samplesXcsp3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "xcsp3parser::@c07341c7bc3703fb2207",
+					"jsonFile" : "target-xcsp3parser-Debug-058961ea20d03f068854.json",
+					"name" : "xcsp3parser",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "xcsp3parser_dynamic::@c07341c7bc3703fb2207",
+					"jsonFile" : "target-xcsp3parser_dynamic-Debug-fdd90808302918071b33.json",
+					"name" : "xcsp3parser_dynamic",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/etud/Documents/Projet_Stage/build",
+		"source" : "/home/etud/Documents/Projet_Stage"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

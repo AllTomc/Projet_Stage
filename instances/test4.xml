@@ -1,0 +1,11 @@
+<instance format="XCSP3" type="CSP">
+    <variables>
+        <var id="a">0..30</var>
+        <var id="b">0..10</var>
+        <var id="c">0..10</var>
+        <var id="d">0..10</var>
+    </variables>
+    <constraints>
+        <intension>eq(a,add(b,add(c, d)))</intension>
+    </constraints>
+</instance>

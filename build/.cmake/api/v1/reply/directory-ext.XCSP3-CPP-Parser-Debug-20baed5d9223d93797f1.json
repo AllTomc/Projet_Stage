@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "ext/XCSP3-CPP-Parser",
+		"source" : "ext/XCSP3-CPP-Parser"
+	}
+}

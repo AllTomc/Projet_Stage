@@ -1,0 +1,84 @@
+<instance format="XCSP3" type="CSP">
+  <variables>
+    <array id="x" size="[28][28]"> 1..784 </array>
+  </variables>
+  <constraints>
+    <allDifferent> x[][] </allDifferent>
+    <group class="rows">
+      <sum>
+        <list> %... </list>
+        <condition> (eq,10990) </condition>
+      </sum>
+      <args> x[0][] </args>
+      <args> x[1][] </args>
+      <args> x[2][] </args>
+      <args> x[3][] </args>
+      <args> x[4][] </args>
+      <args> x[5][] </args>
+      <args> x[6][] </args>
+      <args> x[7][] </args>
+      <args> x[8][] </args>
+      <args> x[9][] </args>
+      <args> x[10][] </args>
+      <args> x[11][] </args>
+      <args> x[12][] </args>
+      <args> x[13][] </args>
+      <args> x[14][] </args>
+      <args> x[15][] </args>
+      <args> x[16][] </args>
+      <args> x[17][] </args>
+      <args> x[18][] </args>
+      <args> x[19][] </args>
+      <args> x[20][] </args>
+      <args> x[21][] </args>
+      <args> x[22][] </args>
+      <args> x[23][] </args>
+      <args> x[24][] </args>
+      <args> x[25][] </args>
+      <args> x[26][] </args>
+      <args> x[27][] </args>
+    </group>
+    <group class="columns">
+      <sum>
+        <list> %... </list>
+        <condition> (eq,10990) </condition>
+      </sum>
+      <args> x[][0] </args>
+      <args> x[][1] </args>
+      <args> x[][2] </args>
+      <args> x[][3] </args>
+      <args> x[][4] </args>
+      <args> x[][5] </args>
+      <args> x[][6] </args>
+      <args> x[][7] </args>
+      <args> x[][8] </args>
+      <args> x[][9] </args>
+      <args> x[][10] </args>
+      <args> x[][11] </args>
+      <args> x[][12] </args>
+      <args> x[][13] </args>
+      <args> x[][14] </args>
+      <args> x[][15] </args>
+      <args> x[][16] </args>
+      <args> x[][17] </args>
+      <args> x[][18] </args>
+      <args> x[][19] </args>
+      <args> x[][20] </args>
+      <args> x[][21] </args>
+      <args> x[][22] </args>
+      <args> x[][23] </args>
+      <args> x[][24] </args>
+      <args> x[][25] </args>
+      <args> x[][26] </args>
+      <args> x[][27] </args>
+    </group>
+    <group class="diagonals">
+      <sum>
+        <list> %... </list>
+        <condition> (eq,10990) </condition>
+      </sum>
+      <args> x[0][0] x[1][1] x[2][2] x[3][3] x[4][4] x[5][5] x[6][6] x[7][7] x[8][8] x[9][9] x[10][10] x[11][11] x[12][12] x[13][13] x[14][14] x[15][15] x[16][16] x[17][17] x[18][18] x[19][19] x[20][20] x[21][21] x[22][22] x[23][23] x[24][24] x[25][25] x[26][26] x[27][27] </args>
+      <args> x[0][27] x[1][26] x[2][25] x[3][24] x[4][23] x[5][22] x[6][21] x[7][20] x[8][19] x[9][18] x[10][17] x[11][16] x[12][15] x[13][14] x[14][13] x[15][12] x[16][11] x[17][10] x[18][9] x[19][8] x[20][7] x[21][6] x[22][5] x[23][4] x[24][3] x[25][2] x[26][1] x[27][0] </args>
+    </group>
+  </constraints>
+</instance>

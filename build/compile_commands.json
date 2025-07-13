@@ -1,0 +1,117 @@
+[
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++17 -o CMakeFiles/converter.dir/src/CHRCallbacks.cpp.o -c /home/etud/Documents/Projet_Stage/src/CHRCallbacks.cpp",
+  "file": "/home/etud/Documents/Projet_Stage/src/CHRCallbacks.cpp"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++17 -o CMakeFiles/converter.dir/src/RuleAllDiff.cpp.o -c /home/etud/Documents/Projet_Stage/src/RuleAllDiff.cpp",
+  "file": "/home/etud/Documents/Projet_Stage/src/RuleAllDiff.cpp"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++17 -o CMakeFiles/converter.dir/src/RuleInstantiation.cpp.o -c /home/etud/Documents/Projet_Stage/src/RuleInstantiation.cpp",
+  "file": "/home/etud/Documents/Projet_Stage/src/RuleInstantiation.cpp"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++17 -o CMakeFiles/converter.dir/src/RuleIntension.cpp.o -c /home/etud/Documents/Projet_Stage/src/RuleIntension.cpp",
+  "file": "/home/etud/Documents/Projet_Stage/src/RuleIntension.cpp"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++17 -o CMakeFiles/converter.dir/src/RuleLinear.cpp.o -c /home/etud/Documents/Projet_Stage/src/RuleLinear.cpp",
+  "file": "/home/etud/Documents/Projet_Stage/src/RuleLinear.cpp"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++17 -o CMakeFiles/converter.dir/src/main.cpp.o -c /home/etud/Documents/Projet_Stage/src/main.cpp",
+  "file": "/home/etud/Documents/Projet_Stage/src/main.cpp"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++11 -o CMakeFiles/xcsp3parser.dir/src/UTF8String.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/UTF8String.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/UTF8String.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++11 -o CMakeFiles/xcsp3parser.dir/src/XCSP3Code.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3Code.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3Code.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++11 -o CMakeFiles/xcsp3parser.dir/src/XCSP3CoreParser.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3CoreParser.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3CoreParser.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++11 -o CMakeFiles/xcsp3parser.dir/src/XCSP3Manager.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3Manager.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3Manager.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++11 -o CMakeFiles/xcsp3parser.dir/src/XMLParser.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XMLParser.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XMLParser.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++11 -o CMakeFiles/xcsp3parser.dir/src/XMLParserTags.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XMLParserTags.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XMLParserTags.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++11 -o CMakeFiles/xcsp3parser.dir/src/XCSP3Tree.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3Tree.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3Tree.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++11 -o CMakeFiles/xcsp3parser.dir/src/XCSP3TreeNode.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3TreeNode.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3TreeNode.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++ -Dxcsp3parser_dynamic_EXPORTS -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -fPIC -std=gnu++11 -o CMakeFiles/xcsp3parser_dynamic.dir/src/UTF8String.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/UTF8String.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/UTF8String.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++ -Dxcsp3parser_dynamic_EXPORTS -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -fPIC -std=gnu++11 -o CMakeFiles/xcsp3parser_dynamic.dir/src/XCSP3Code.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3Code.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3Code.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++ -Dxcsp3parser_dynamic_EXPORTS -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -fPIC -std=gnu++11 -o CMakeFiles/xcsp3parser_dynamic.dir/src/XCSP3CoreParser.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3CoreParser.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3CoreParser.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++ -Dxcsp3parser_dynamic_EXPORTS -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -fPIC -std=gnu++11 -o CMakeFiles/xcsp3parser_dynamic.dir/src/XCSP3Manager.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3Manager.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3Manager.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++ -Dxcsp3parser_dynamic_EXPORTS -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -fPIC -std=gnu++11 -o CMakeFiles/xcsp3parser_dynamic.dir/src/XMLParser.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XMLParser.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XMLParser.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++ -Dxcsp3parser_dynamic_EXPORTS -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -fPIC -std=gnu++11 -o CMakeFiles/xcsp3parser_dynamic.dir/src/XMLParserTags.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XMLParserTags.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XMLParserTags.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++ -Dxcsp3parser_dynamic_EXPORTS -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -fPIC -std=gnu++11 -o CMakeFiles/xcsp3parser_dynamic.dir/src/XCSP3Tree.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3Tree.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3Tree.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++ -Dxcsp3parser_dynamic_EXPORTS -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -fPIC -std=gnu++11 -o CMakeFiles/xcsp3parser_dynamic.dir/src/XCSP3TreeNode.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3TreeNode.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src/XCSP3TreeNode.cc"
+},
+{
+  "directory": "/home/etud/Documents/Projet_Stage/build/ext/XCSP3-CPP-Parser",
+  "command": "/usr/bin/g++  -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/include -I/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/src -I/usr/include/libxml2 -g -std=gnu++11 -o CMakeFiles/samplesXcsp3.dir/samples/main.cc.o -c /home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/samples/main.cc",
+  "file": "/home/etud/Documents/Projet_Stage/ext/XCSP3-CPP-Parser/samples/main.cc"
+}
+]

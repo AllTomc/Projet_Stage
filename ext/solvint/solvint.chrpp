@@ -1,0 +1,244 @@
+/*
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the Apache License, Version 2.0.
+ *
+ *  Copyright:
+ *     2022, Marc Legeay <marc.legeay@univ-angers.fr>
+ *
+ *     Licensed under the Apache License, Version 2.0 (the "License");
+ *     you may not use this file except in compliance with the License.
+ *     You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *     Unless required by applicable law or agreed to in writing, software
+ *     distributed under the License is distributed on an "AS IS" BASIS,
+ *     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *     See the License for the specific language governing permissions and
+ *     limitations under the License.
+ *
+ */
+
+#include <iostream>
+#include <vector>
+#include <memory>
+#include <chrpp.hh>
+
+#include <options.hpp>
+
+#include "solvint.h"
+
+using intvar = chr::Interval<int, false>;
+
+
+template < typename T >
+void print(T& pb)
+{
+    auto it = pb.chr_store_begin();
+    while (!it.at_end())
+    {
+        std::cout << it.to_string() << std::endl;
+        ++it;
+    }
+}
+
+inline chr::ES_CHR maj_dom(chr::Logical_var_mutable< intvar > &i, int val) {
+    bool modified=false;
+    return i.update_mutable(modified, [&modified, val](auto& intvl) {
+        modified = intvl.eq(val);
+    });
+}
+
+/*
+<CHR name="SOLVINT">
+    // var(Val, Dom)
+    <chr_constraint> var(?int, -intvar)
+    // eq(Var, Var), eq(Var, Var), neq(Var, Var), lt(Var, Var), le(Var, Var), gt(Var, Var), ge(Var, Var)
+    <chr_constraint> eq(?int, ?int), neq(?int, ?int), lt(?int, ?int), le(?int, ?int), gt(?int, ?int), ge(?int, ?int)
+    // plus(VarA, VarB, VarC) A+B = C
+    <chr_constraint> plus(?int, ?int, ?int)
+    // mult(VarA, VarB, VarC) A*B = C
+    <chr_constraint> mult(?int, ?int, ?int)
+    // div(VarA, varB, varC) A/B = C
+    <chr_constraint> div(?int, +int, ?int)
+
+    dom_empty_fail @ var(_, Dom) ==> (*Dom).empty() | failure() ;;
+    dom_singleton_unif @ var(Val, Dom) ==> !Val.ground() && (*Dom).singleton() | Val %= (*Dom).val() ;;
+    dom_val_grounded @ var(Val, Dom) ==> Val.ground() | maj_dom(Dom, *Val);;
+
+    eq_cste_cste @ eq(X, Y) ==> X %= Y ;;
+    eq_var_var @ var(X, XDom), var(Y, YDom), eq(X, Y) ==> XDom %= YDom ;;
+
+    neq_var_var @ var(X, XDom), var(Y, YDom), neq(X, Y) =>> Solvint::ne(XDom, YDom) ;;
+    neq_cste_var @ var(Y, YDom), neq(X, Y) ==> X.ground() | Solvint::ne(YDom, *X) ;;
+    neq_var_cste @ var(X, XDom), neq(X, Y) ==> Y.ground() | Solvint::ne(XDom, *Y) ;;
+    neq_cste_cste @ neq(X, Y) ==> X.ground() && Y.ground() | Solvint::ne(*X, *Y) ;;
+
+    lt_var_var @ var(X, XDom), var(Y, YDom), lt(X, Y) =>> Solvint::lt(XDom, YDom) ;;
+    lt_cste_var @ var(Y, YDom), lt(X, Y) ==> X.ground() | Solvint::lt(*X, YDom) ;;
+    lt_var_cste @ var(X, XDom), lt(X, Y) ==> Y.ground() | Solvint::lt(XDom, *Y) ;;
+    lt_cste_cste @ lt(X, Y) ==> X.ground() && Y.ground() | Solvint::lt(*X, *Y) ;;
+
+    le_var_var @ var(X, XDom), var(Y, YDom), le(X, Y) =>> Solvint::le(XDom, YDom) ;;
+    le_cste_var @ var(Y, YDom), le(X, Y) ==> X.ground() | Solvint::le(*X, YDom) ;;
+    le_var_cste @ var(X, XDom), le(X, Y) ==> Y.ground() | Solvint::le(XDom, *Y) ;;
+    le_cste_cste @ le(X, Y) ==> X.ground() && Y.ground() | Solvint::le(*X, *Y) ;;
+
+    gt_var_var @ var(X, XDom), var(Y, YDom), gt(X, Y) =>> Solvint::gt(XDom, YDom) ;;
+    gt_cste_var @ var(Y, YDom), gt(X, Y) ==> X.ground() | Solvint::gt(*X, YDom) ;;
+    gt_var_cste @ var(X, XDom), gt(X, Y) ==> Y.ground() | Solvint::gt(XDom, *Y) ;;
+    gt_cste_cste @ gt(X, Y) ==> X.ground() && Y.ground() | Solvint::gt(*X, *Y) ;;
+
+    ge_var_var @ var(X, XDom), var(Y, YDom), ge(X, Y) =>> Solvint::ge(XDom, YDom) ;;
+    ge_cste_var @ var(Y, YDom), ge(X, Y) ==> X.ground() | Solvint::ge(*X, YDom) ;;
+    ge_var_cste @ var(X, XDom), ge(X, Y) ==> Y.ground() | Solvint::ge(XDom, *Y) ;;
+    ge_cste_cste @ ge(X, Y) ==> X.ground() && Y.ground() | Solvint::ge(*X, *Y) ;;
+
+    plus_var_var_var @ var(X, XDom), var(Y, YDom), var(Z, ZDom), plus(X, Y, Z) =>> Solvint::plus_boundConsistency(XDom, YDom, ZDom) ;;
+
+    mult_var_var_var @ var(X, XDom), var(Y, YDom), var(Z, ZDom), mult(X, Y, Z) =>> Solvint::mult_boundConsistency(XDom, YDom, ZDom) ;;
+    mult_var_cste_var @ var(X, XDom), var(Z, ZDom), mult(X, Y, Z) =>> Y.ground() | Solvint::mult_boundConsistency(XDom, *Y, ZDom) ;;
+
+    div @ var(X, XDom), var(Z, ZDom), div(X, Y, Z) =>> Solvint::div_boundConsistency(XDom, Y, ZDom) ;;
+</CHR>
+*/
+
+int main() {
+    TRACE( chr::Log::register_flags(chr::Log::ALL); )
+
+    auto space = SOLVINT::create();
+
+    chr::Logical_var< int > S,E,N,D,M,O,R,Y;
+    chr::Logical_var_mutable< intvar > SDom(intvar(0, 9)),EDom(intvar(0, 9)),NDom(intvar(0, 9)),DDom(intvar(0, 9)),MDom(intvar(0, 9)),ODom(intvar(0, 9)),RDom(intvar(0, 9)),YDom(intvar(0, 9));
+
+    chr::Logical_var< int > R1, R2, R3, R4;
+    chr::Logical_var_mutable< intvar > R1Dom(intvar(0,2)), R2Dom(intvar(0,2)), R3Dom(intvar(0,2)), R4Dom(intvar(0,2));
+
+    chr::Logical_var< int > DE, R1_10, YR1_10; // D+E, 10*R1, Y+10*R1
+    chr::Logical_var_mutable< intvar > DEDom(intvar(0,100)), R1_10Dom(intvar(0,100)), YR1_10Dom(intvar(0,100));
+
+    chr::Logical_var< int > R1N, R1NR, R2_10, ER2_10; // R1+N, R1+N+R, 10*R2, E+10*R2
+    chr::Logical_var_mutable< intvar > R1NDom(intvar(0,100)), R1NRDom(intvar(0,100)), R2_10Dom(intvar(0,100)), ER2_10Dom(intvar(0,100));
+
+    chr::Logical_var< int > R2E, R2EO, R3_10, NR3_10; // R2+E, R2+E+O, 10*R3, N+10*R3
+    chr::Logical_var_mutable< intvar > R2EDom(intvar(0,100)), R2EODom(intvar(0,100)), R3_10Dom(intvar(0,100)), NR3_10Dom(intvar(0,100));
+
+    chr::Logical_var< int > R3S, R3SM, R4_10, OR4_10; // R3+S, R3+S+M, 10*R4, O+10*R4
+    chr::Logical_var_mutable< intvar > R3SDom(intvar(0,100)), R3SMDom(intvar(0,100)), R4_10Dom(intvar(0,100)), OR4_10Dom(intvar(0,100));
+
+    CHR_RUN(
+        space->var(S, SDom);
+        space->var(E, EDom);
+        space->var(N, NDom);
+        space->var(D, DDom);
+        space->var(M, MDom);
+        space->var(O, ODom);
+        space->var(R, RDom);
+        space->var(Y, YDom);
+
+        space->var(R1, R1Dom);
+        space->var(R2, R2Dom);
+        space->var(R3, R3Dom);
+        space->var(R4, R4Dom);
+
+        space->var(DE, DEDom);
+        space->var(R1_10, R1_10Dom);
+        space->var(YR1_10, YR1_10Dom);
+
+        space->var(R1N, R1NDom);
+        space->var(R1NR, R1NRDom);
+        space->var(R2_10, R2_10Dom);
+        space->var(ER2_10, ER2_10Dom);
+
+        space->var(R2E, R2EDom);
+        space->var(R2EO, R2EODom);
+        space->var(R3_10, R3_10Dom);
+        space->var(NR3_10, NR3_10Dom);
+
+        space->var(R3S, R3SDom);
+        space->var(R3SM, R3SMDom);
+        space->var(R4_10, R4_10Dom);
+        space->var(OR4_10, OR4_10Dom);
+
+        // D+E = Y+10*R1
+        space->plus(D, E, DE);
+        space->mult(R1, 10, R1_10);
+        space->plus(Y, R1_10, YR1_10);
+        space->eq(DE, YR1_10);
+
+        // R1+N+R = E+10*R2
+        space->plus(R1, N, R1N);
+        space->plus(R1N, R, R1NR);
+        space->mult(R2, 10, R2_10);
+        space->plus(E, R2_10, ER2_10);
+        space->eq(R1NR, ER2_10);
+
+        // R2+E+O = N+10*R3
+        space->plus(R2, E, R2E);
+        space->plus(R2E, O, R2EO);
+        space->mult(R3, 10, R3_10);
+        space->plus(N, R3_10, NR3_10);
+        space->eq(R2EO, NR3_10);
+
+        // R3+S+M = O+10*R4
+        space->plus(R3, S, R3S);
+        space->plus(R3S, M, R3SM);
+        space->mult(R4, 10, R4_10);
+        space->plus(O, R4_10, OR4_10);
+        space->eq(R3SM, OR4_10);
+
+        // R4 = M
+        space->eq(R4, M);
+
+        // alldiff
+        space->neq(S, E);
+        space->neq(S, N);
+        space->neq(S, D);
+        space->neq(S, M);
+        space->neq(S, O);
+        space->neq(S, R);
+        space->neq(S, Y);
+
+        space->neq(E, N);
+        space->neq(E, D);
+        space->neq(E, M);
+        space->neq(E, O);
+        space->neq(E, R);
+        space->neq(E, Y);
+
+        space->neq(N, D);
+        space->neq(N, M);
+        space->neq(N, O);
+        space->neq(N, R);
+        space->neq(N, Y);
+
+        space->neq(D, M);
+        space->neq(D, O);
+        space->neq(D, R);
+        space->neq(D, Y);
+
+        space->neq(M, O);
+        space->neq(M, R);
+        space->neq(M, Y);
+
+        space->neq(O, R);
+        space->neq(O, Y);
+
+        space->neq(R, Y);
+
+        // Sans labelling il ne se passe rien
+        O %= 0;
+        M %= 1;
+        Y %= 2;
+        E %= 5;
+        N %= 6;
+        D %= 7;
+        R %= 8;
+        S %= 9;
+    )
+    if(chr::failed()) {
+        std::cout << "ECHEC" << std::endl;
+    }
+    print(*space);
+    return 0;
+}
