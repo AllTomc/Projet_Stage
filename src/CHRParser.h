@@ -16,12 +16,11 @@ private:
     bool useBuilder;
     bool useFile;
     bool minimalMode;
-    std::vector<std::string> selectedRules;
+    vector<string> selectedRules;
 
 public:
-    CHRParser(const std::string &filePath, bool useBuilder = false, bool useFile = false)
-    : XCSP3CoreParser(&parserCallbacks), useBuilder(useBuilder), useFile(useFile),
-    minimalMode(minimalMode), selectedRules(selectedRules) {
+    CHRParser(const std::string &filePath, vector<string> selectedRules, bool useBuilder = false, bool useFile = false, bool minimalMode = false)
+    : XCSP3CoreParser(&parserCallbacks), useBuilder(useBuilder), useFile(useFile), minimalMode(minimalMode), selectedRules(selectedRules) {
 
         std::regex fileRegex(R"(([^/\\]+)(?=\.[^/\\]+$))");
         std::smatch match;
@@ -47,18 +46,22 @@ public:
         } else {
             outStream = &std::cout;
         }
-        if (useBuilder) {
-            structBuilderPtr = std::make_unique<CHRStructBuilder>(filename);
-            structBuilderPtr->enableBuilder();
-            parserCallbacks = CHRCallbacks(structBuilderPtr.get(), *outStream, filename);
-        } else {
-            structBuilderPtr = std::make_unique<CHRStructBuilder>(filename);
-            parserCallbacks = CHRCallbacks(structBuilderPtr.get(), *outStream, filename);
-        }
 
+        structBuilderPtr = std::make_unique<CHRStructBuilder>(filename);
+        if (useBuilder) {
+        structBuilderPtr->enableBuilder();
+        } 
+        parserCallbacks = CHRCallbacks(structBuilderPtr.get(), *outStream, filename,minimalMode, selectedRules);
         this->parse(filePath.c_str());
 
-        std::cout << "C++ généré dans : " << outputPath << std::endl;
+        std::cout << "C++ généré "<< std::endl;
+    }
+    void setMinimalMode() {
+        parserCallbacks.setMinimalMode();
+    }
+
+    void onlySelectedRules(std::vector<std::string> rules) {
+        parserCallbacks.onlySelectedRules(rules);
     }
 };
 

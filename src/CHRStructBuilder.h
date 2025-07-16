@@ -294,7 +294,6 @@ public:
         build_init = initB.str() + build_init ;
     }
 
-
     void addInstantiations(const std::map<int, int>& instanciations) {
         for (const auto& [index, value] : instanciations) {
                  build_instantiation += "set_eq(Dom[" + std::to_string(index) + "], " + std::to_string(value) + ");\n";

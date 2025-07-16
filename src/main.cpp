@@ -6,12 +6,22 @@
 
 using namespace std;
 
-vector<string> splitRules(const string &rules) {
-    vector<string> result;
-    stringstream ss(rules);
-    string rule;
-    while (getline(ss, rule, ',')) {
-        result.push_back(rule);
+std::string normalizeRuleName(const std::string& input) {
+    std::string result;
+    std::locale loc;
+    for (char c : input) {
+        if (!std::isspace(c, loc))
+            result += std::tolower(c, loc);
+    }
+    return result;
+}
+
+std::vector<std::string> splitRules(const std::string& rules) {
+    std::vector<std::string> result;
+    std::stringstream ss(rules);
+    std::string rule;
+    while (std::getline(ss, rule, ',')) {
+        result.push_back(normalizeRuleName(rule));
     }
     return result;
 }
@@ -53,7 +63,7 @@ int main(int argc, char *argv[]) {
                 cerr << "Erreur: L'option -s nécessite une liste de règles.\n";
                 return 1;
             }
-        } else if (arg[0] == '-' || arg[0] == '-help') {
+        } else if (arg == "-help" ) {
             cerr << "Option inconnue : " << arg << "\n";
             printUsage(argv[0]);
             return 1;
@@ -68,8 +78,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // TODO minimalMode / selectedRules 
-    CHRParser parser(filePath, useBuilder, useFile);
+    CHRParser parser(filePath, selectedRules, useBuilder, useFile, minimalMode);
 
     return 0;
 }

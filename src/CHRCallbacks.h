@@ -25,15 +25,23 @@ protected:
     std::map<std::string, int> name_id_map;
     std::shared_ptr<int> global_id_val = std::make_shared<int>(0);
     bool var_declaration_rule_added = false;
+    bool minimalMode = false; 
+
     std::vector<Predicate> predicates_init_element;
     std::set<VarDecl> vars_set;
+    std::vector<std::string> selectedRules; 
+    
     RuleFactory factory;
+
 public:
-    CHRCallbacks(CHRStructBuilder* v, std::ostream& outputStream, std::string name);
-    CHRCallbacks(std::ostream& out);
-    CHRCallbacks(std::ostream& out, std::string name);
+    CHRCallbacks(CHRStructBuilder* v, std::ostream& outputStream,  std::string name, bool minimalMode, std::vector<string> selectedRules);
     CHRCallbacks();
     ~CHRCallbacks();
+
+    void setMinimalMode();
+    void onlySelectedRules(std::vector<std::string> rules);
+    bool isRuleSelected(const std::string& ruleName) const ;
+ 
     void beginInstance(XCSP3Core::InstanceType type) override;
     void endInstance() override;
     void close(std::string rulesText);
