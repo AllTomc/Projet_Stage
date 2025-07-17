@@ -1,0 +1,6 @@
+[submodule "ext/chrpp"]
+	path = ext/chrpp
+	url = https://gitlab.com/vynce/chrpp
+[submodule "ext/XCSP3-CPP-Parser"]
+	path = ext/XCSP3-CPP-Parser
+	url = https://github.com/xcsp3team/XCSP3-CPP-Parser
