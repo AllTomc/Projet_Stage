@@ -8,7 +8,11 @@ CHRCallbacks::CHRCallbacks(CHRStructBuilder* v, std::ostream& outputStream, std:
     : builder(v), out(&outputStream), chrname(name), minimalMode(minimalMode), selectedRules(selectedRules) 
     {
         global_id_val = builder->global_id_val;
+        //On nomme le préfixe de la variable static de Rule pour les opérateurs, principe réutilisable pour les autres préfixes.
         Rule::setprefix_op("CspOp");
+        if(minimalMode) {
+            Rule::enable_minimalMode();
+        }
     }
 CHRCallbacks::CHRCallbacks()
     : builder(nullptr), out(&std::cout) {}

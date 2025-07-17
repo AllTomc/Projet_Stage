@@ -16,6 +16,7 @@ protected:
     std::vector<Predicate> head;
 
     static std::string prefix_op ;
+    static bool minimalMode;
     std::string symbol = "==>";
     std::vector<std::string> guard;
     std::vector<Predicate> tail;
@@ -30,6 +31,7 @@ public:
     virtual ~Rule() = default;
     
     static void setprefix_op(const std::string & s);
+    static void enable_minimalMode();
     void setCHRCallbacks(CHRCallbacks* cb) { callback = cb; }
     CHRCallbacks* getCHRCallbacks() const { return callback; }
     virtual std::string toCHR()  {
