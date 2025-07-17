@@ -10,8 +10,7 @@ bool RuleAllDiff::neq_rules_defined = false;
 
 void RuleAllDiff::finalize() {
     if (!neq_rules_defined) {
-        auto neq_pred = std::make_shared<Predicate>("CspOpneq", std::vector<std::string>{ "+int", "?int", "+int", "?int"});
-        callback->add_constraint(neq_pred);
+        callback->add_constraint(Predicate::cspOp("neq"));
         callback->addRule(RuleRaw::neqRule());
         neq_rules_defined = true;
 

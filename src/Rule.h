@@ -15,7 +15,7 @@ protected:
     std::string name;
     std::vector<Predicate> head;
 
-    std::string prefix_op = "CspOp";
+    static std::string prefix_op ;
     std::string symbol = "==>";
     std::vector<std::string> guard;
     std::vector<Predicate> tail;
@@ -28,7 +28,8 @@ public:
     }
 
     virtual ~Rule() = default;
-
+    
+    static void setprefix_op(const std::string & s);
     void setCHRCallbacks(CHRCallbacks* cb) { callback = cb; }
     CHRCallbacks* getCHRCallbacks() const { return callback; }
     virtual std::string toCHR()  {

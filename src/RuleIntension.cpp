@@ -70,14 +70,9 @@ RuleIntension::TempVar RuleIntension::translate_expression(Node* n) {
         for (Node* p : op->parameters)
             args.push_back(translate_expression(p));
 
-        Predicate pred;
 
         if ((opname == "lt" || opname == "le" || opname == "gt" || opname == "ge" || opname == "eq" || opname == "neq")) {
-            pred = Predicate(prefix_op + opname);
-            pred.setTypes({
-                "+int",  "?int" ,
-                "+int",  "?int" 
-            });
+            Predicate pred = *Predicate::cspOp(opname);
             pred.setElements({
                 std::to_string(args[0].id), args[0].name,
                 std::to_string(args[1].id), args[1].name
@@ -114,10 +109,8 @@ RuleIntension::TempVar RuleIntension::translate_expression(Node* n) {
 
 
             callbacks->buildTmpVariableInteger(xname, result_interval.first, result_interval.second);
-
-            std::string chr_op = (opname == "add") ? (prefix_op+"plus") : (prefix_op + opname);
-            pred = Predicate(chr_op);
-            pred.setTypes({ "+int", "?int", "+int", "?int", "+int", "?int"});
+            std::string chr_op = (opname == "add") ? ("plus") : (opname);
+            Predicate pred = *Predicate::cspOp(chr_op);
             pred.setElements({
                 std::to_string(args[0].id), args[0].name,
                 std::to_string(args[1].id), args[1].name,

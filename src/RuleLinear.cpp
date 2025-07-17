@@ -24,8 +24,8 @@ bool RuleLinear::linear_rules_defined = false;
 
 void RuleLinear::finalize() {
     if (!linear_rules_defined) {
-        callback->add_constraint(std::make_shared<Predicate>(prefix_op + "plus", std::vector<std::string>{"+int","?int", "+int", "?int", "+int", "?int"}));
-        callback->add_constraint(std::make_shared<Predicate>(prefix_op + "eq", std::vector<std::string>{"+int", "?int", "+int", "?int"}));
+        callback->add_constraint(Predicate::cspOp("plus"));
+        callback->add_constraint(Predicate::cspOp("eq"));
 
         callback->addRule(RuleRaw::plusRule());
         callback->addRule(RuleRaw::eqRule());

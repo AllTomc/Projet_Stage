@@ -1,11 +1,15 @@
 #include "CHRCallbacks.h"
 #include "RuleAllDiff.h"
 #include "RuleInstantiation.h"
-#include "RuleLinear.h"
+#include "RuleLinear.h" 
 
 
 CHRCallbacks::CHRCallbacks(CHRStructBuilder* v, std::ostream& outputStream, std::string name, bool minimalMode, std::vector<std::string> selectedRules)
-    : builder(v), out(&outputStream), chrname(name), minimalMode(minimalMode), selectedRules(selectedRules) {global_id_val = builder->global_id_val;}
+    : builder(v), out(&outputStream), chrname(name), minimalMode(minimalMode), selectedRules(selectedRules) 
+    {
+        global_id_val = builder->global_id_val;
+        Rule::setprefix_op("CspOp");
+    }
 CHRCallbacks::CHRCallbacks()
     : builder(nullptr), out(&std::cout) {}
     
@@ -36,9 +40,9 @@ void CHRCallbacks::buildVariableInteger(std::string id, int minValue, int maxVal
     std::cout << "Variable entière : " << id << " avec domaine [" << minValue << ", " << maxValue << "]" << std::endl;
     if (!var_declaration_rule_added) {
         addDomainPropagationRules();
-        add_constraint(std::make_shared<Predicate>("CspVarIntDec", std::vector<std::string>{"+int", "+string", "?int", "-interval"}));
-        add_constraint(std::make_shared<Predicate>("CspVarInt", std::vector<std::string>{"+int","?int", "-interval"}));
-        add_constraint(std::make_shared<Predicate>("CspTmpInt", std::vector<std::string>{"+int", "?int", "-interval"}));
+        add_constraint(Predicate::varIntDec());
+        add_constraint(Predicate::varInt());
+        add_constraint(Predicate::tmpInt());
         
         rules.emplace_back(RuleRaw::declarationRules());
         var_declaration_rule_added = true;
@@ -137,8 +141,7 @@ void CHRCallbacks::buildConstraintSum(string id, vector<XVariable*> &list, vecto
 
 void CHRCallbacks::close(std::string rulesText) {
     // Ajouter labelling
-    auto labellingPred = std::make_shared<Predicate>("labelling", std::vector<std::string>{"+int"});
-    add_constraint(labellingPred);
+    add_constraint(Predicate::labelling());
 
     rules.emplace_back(RuleRaw::labellingRules());
     

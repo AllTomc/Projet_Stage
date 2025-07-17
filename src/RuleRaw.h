@@ -22,6 +22,9 @@ public:
     // Static Rule Factories
     // ===============================
 
+
+    // La modification de prefix_op s'effectue dans le constructeur de CHRCallbacks (.cpp)
+    
     static std::shared_ptr<RuleRaw> declarationRules() {
         auto r = std::make_shared<RuleRaw>();
         r->rule = "CspVarIntDec(Id,_,X,Dom) ==> CspVarInt(Id,X,Dom);;\n"
@@ -46,51 +49,51 @@ public:
 
     static std::shared_ptr<RuleRaw> eqRule() {
         auto r = std::make_shared<RuleRaw>();
-        r->rule = "eq_var_var @ CspVarInt(IdX,X, XDom), CspVarInt(IdY,Y, YDom), CspOpeq(IdX, X, IdY, Y) ==> XDom %= YDom, X %= Y ;;";
+        r->rule = "eq_var_var @ CspVarInt(IdX,X, XDom), CspVarInt(IdY,Y, YDom), "+ prefix_op +"eq(IdX, X, IdY, Y) ==> XDom %= YDom, X %= Y ;;";
         return r;
     }
 
     static std::shared_ptr<RuleRaw> neqRule() {
         auto r = std::make_shared<RuleRaw>();
-        r->rule = "neq_var_var @ CspVarInt(Id1, X, XDom), CspVarInt(Id2, Y, YDom), CspOpneq(Id1, X, Id2, Y) ==> Solvint::ne(XDom, YDom);;\n"
-                  "neq_cste_var @ CspVarInt(Id, Y, YDom), CspOpneq(_,X,Id,Y) ==> X.ground() | Solvint::ne(YDom, *X) ;;\n"
-                  "neq_var_cste @ CspVarInt(Id, X, XDom), CspOpneq(Id,X,_,Y) ==> Y.ground() | Solvint::ne(XDom, *Y) ;;";
+        r->rule = "neq_var_var @ CspVarInt(Id1, X, XDom), CspVarInt(Id2, Y, YDom), "+ prefix_op +"neq(Id1, X, Id2, Y) ==> Solvint::ne(XDom, YDom);;\n"
+                  "neq_cste_var @ CspVarInt(Id, Y, YDom), "+ prefix_op +"neq(_,X,Id,Y) ==> X.ground() | Solvint::ne(YDom, *X) ;;\n"
+                  "neq_var_cste @ CspVarInt(Id, X, XDom), "+ prefix_op +"neq(Id,X,_,Y) ==> Y.ground() | Solvint::ne(XDom, *Y) ;;";
         return r;
     }
 
     static std::shared_ptr<RuleRaw> ltRule() {
         auto r = std::make_shared<RuleRaw>();
-        r->rule = "lt_var_var @ CspVarInt(IdX,X, XDom), CspVarInt(IdY,Y, YDom), CspOplt(IdX, X, IdY, Y) =>> Solvint::lt(XDom, YDom) ;;";
+        r->rule = "lt_var_var @ CspVarInt(IdX,X, XDom), CspVarInt(IdY,Y, YDom), "+ prefix_op +"lt(IdX, X, IdY, Y) =>> Solvint::lt(XDom, YDom) ;;";
         return r;
     }
 
     static std::shared_ptr<RuleRaw> leRule() {
         auto r = std::make_shared<RuleRaw>();
-        r->rule = "le_var_var @ CspVarInt(IdX,X, XDom), CspVarInt(IdY,Y, YDom), CspOple(IdX, X, IdY, Y) =>> Solvint::le(XDom, YDom) ;;";
+        r->rule = "le_var_var @ CspVarInt(IdX,X, XDom), CspVarInt(IdY,Y, YDom), "+ prefix_op +"le(IdX, X, IdY, Y) =>> Solvint::le(XDom, YDom) ;;";
         return r;
     }
 
     static std::shared_ptr<RuleRaw> gtRule() {
         auto r = std::make_shared<RuleRaw>();
-        r->rule = "gt_var_var @ CspVarInt(IdX,X, XDom), CspVarInt(IdY,Y, YDom), CspOpgt(IdX, X, IdY, Y) =>> Solvint::gt(XDom, YDom) ;;";
+        r->rule = "gt_var_var @ CspVarInt(IdX,X, XDom), CspVarInt(IdY,Y, YDom), "+ prefix_op +"gt(IdX, X, IdY, Y) =>> Solvint::gt(XDom, YDom) ;;";
         return r;
     }
 
     static std::shared_ptr<RuleRaw> geRule() {
         auto r = std::make_shared<RuleRaw>();
-        r->rule = "ge_var_var @ CspVarInt(IdX,X, XDom), CspVarInt(IdY,Y, YDom), CspOpge(IdX, X, IdY, Y) =>> Solvint::ge(XDom, YDom) ;;";
+        r->rule = "ge_var_var @ CspVarInt(IdX,X, XDom), CspVarInt(IdY,Y, YDom), "+ prefix_op +"ge(IdX, X, IdY, Y) =>> Solvint::ge(XDom, YDom) ;;";
         return r;
     }
 
     static std::shared_ptr<RuleRaw> plusRule() {
         auto r = std::make_shared<RuleRaw>();
-        r->rule = "plus @ CspVarInt(Id1,X,XDom), CspVarInt(Id2,Y,YDom), CspVarInt(Id3,Z,ZDom), CspOpplus(Id1,X,Id2,Y,Id3,Z) =>> Solvint::plus_boundConsistency(XDom, YDom, ZDom) ;;";
+        r->rule = "plus @ CspVarInt(Id1,X,XDom), CspVarInt(Id2,Y,YDom), CspVarInt(Id3,Z,ZDom), "+ prefix_op +"plus(Id1,X,Id2,Y,Id3,Z) =>> Solvint::plus_boundConsistency(XDom, YDom, ZDom) ;;";
         return r;
     }
 
     static std::shared_ptr<RuleRaw> divRule() {
         auto r = std::make_shared<RuleRaw>();
-        r->rule = "div @ CspVarInt(IdX,X, XDom), CspVarInt(IdY,Y, YDom), CspVarInt(IdZ,Z, ZDom), CspOpdiv(IdX, X, IdY, Y, IdZ, Z) =>> Solvint::div_boundConsistency(XDom, Y, ZDom) ;;";
+        r->rule = "div @ CspVarInt(IdX,X, XDom), CspVarInt(IdY,Y, YDom), CspVarInt(IdZ,Z, ZDom), "+ prefix_op +"div(IdX, X, IdY, Y, IdZ, Z) =>> Solvint::div_boundConsistency(XDom, Y, ZDom) ;;";
         return r;
     }
 };

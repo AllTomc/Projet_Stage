@@ -15,7 +15,7 @@ RuleInstantiation::RuleInstantiation(const std::vector<XVariable*>& list,const s
 void RuleInstantiation::finalize() {
 
     if (!eq_rules_defined) {
-        callback->  add_constraint(std::make_shared<Predicate>(prefix_op + "eq", std::vector<std::string>{"+int", "?int", "+int", "?int"}));
+        callback->add_constraint(Predicate::cspOp("eq"));
         callback->addRule(RuleRaw::eqRule());
         eq_rules_defined = true;
     }
